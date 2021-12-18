@@ -1,0 +1,13 @@
+{
+  "menubar": {
+    "top": {
+      "view": "Scan Ansicht",
+      "settings": "Einstellungen"
+    },
+    "bottom" :{
+    }
+  },
+  "settings": {
+    
+  }
+}

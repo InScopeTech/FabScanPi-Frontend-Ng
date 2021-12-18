@@ -1,0 +1,31 @@
+.top-bar{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-bar{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-home{
+  position: relative;
+  right: .2em;
+  font-size: 46px;
+  cursor: pointer;
+}
+
+.flag {
+  width: 20px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.mat-select{
+  position: relative;
+  bottom: -.15em;
+}

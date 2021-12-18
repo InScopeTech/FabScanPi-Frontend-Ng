@@ -1,10 +1,28 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-const routes: Routes = [];
+import {SceneComponent} from "./component/scene/scene.component";
+import {SettingsComponent} from "./component/settings/settings.component";
+
+const routes: Routes = [
+  {
+    path: 'view',
+    component: SceneComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+  },
+  {
+    path: '**',
+    component: SceneComponent,
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

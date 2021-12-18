@@ -1,0 +1,35 @@
+<mat-toolbar class="top-bar">
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm="true">
+    <h1 class="main-home" routerLink="/">{{title}}</h1>
+    <button mat-button routerLink="/view">
+      <img src="assets/icons/box-view.svg" alt="">
+      {{'menubar.top.view' | translate}}
+    </button>
+  </div>
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm="true">
+    <button mat-button routerLink="/settings">
+      <img src="assets/icons/settings.svg" alt="">
+      {{'menubar.top.settings' | translate}}
+    </button>
+    <mat-select style="width: 60px" [value]="selectedLanguage.value" (valueChange)="changeLanguage($event)">
+      <mat-select-trigger>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding: 0 16px">
+          <img alt="" [src]="selectedLanguage.img" class="flag">
+          <span>{{ selectedLanguage.label }}</span>
+        </div>
+      </mat-select-trigger>
+      <mat-option *ngFor="let lang of languages" [value]="lang.value">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <img alt="" [src]="lang.img" class="flag">
+          <span style="font-size: 14px">{{ lang.label }}</span>
+        </div>
+      </mat-option>
+    </mat-select>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<mat-toolbar class="bottom-bar"></mat-toolbar>
+
