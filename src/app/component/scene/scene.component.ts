@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RenderService } from "../../service/render.service";
 import { ScanTestService } from "../../service/scan.test.service";
+import {MatSliderChange} from "@angular/material/slider";
 
 @Component({
   selector: 'app-scene',
@@ -13,6 +14,9 @@ import { ScanTestService } from "../../service/scan.test.service";
  */
 export class SceneComponent implements OnInit {
 
+  private static testSceneLoaded: boolean = false;
+
+  public navOpened: boolean = true;
   /**
    * @constructor
    * @param scanTest
@@ -21,6 +25,24 @@ export class SceneComponent implements OnInit {
 
   ngOnInit(): void {
     RenderService.init();
-    this.scanTest.runTest();
+    if (!SceneComponent.testSceneLoaded){
+      this.scanTest.runTest();
+      SceneComponent.testSceneLoaded = true;
+    }
+  }
+
+  onNavToggle(): void {
+    this.navOpened = !this.navOpened;
+    const interval = setInterval(() => {
+      RenderService.setWidthScale(this.navOpened ? RenderService.WIDTH_SCALE_NAV_OPENED : RenderService.WIDTH_SCALE_NAV_COLLAPSED);
+      RenderService.resize();
+      clearInterval(interval);
+    }, 1000);
+  }
+
+  onPointSizeChange(event: MatSliderChange){
+    this.scanTest.getPointCloud().getPointCloudChunks().forEach(pointCloudChunk => {
+      pointCloudChunk.getMaterial().size = event.value || 0.1;
+    })
   }
 }

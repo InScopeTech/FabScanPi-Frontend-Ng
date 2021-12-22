@@ -26,7 +26,7 @@ export class ScanTestService {
    * @constructor
    */
   constructor() {
-    this.pointCloud = new PointCloud(15000);
+    this.pointCloud = new PointCloud(30000);
   }
 
   /**
@@ -125,5 +125,12 @@ export class ScanTestService {
         reject(error);
       });
     });
+  }
+
+  /**
+   *
+   */
+  public getPointCloud(): PointCloud {
+    return this.pointCloud;
   }
 }

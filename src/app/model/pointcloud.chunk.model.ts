@@ -20,7 +20,7 @@ export class PointCloudChunk {
   private readonly renderMaterial: THREE.PointsMaterial;
   private readonly bufferGeometry: THREE.BufferGeometry;
 
-  private readonly debugMode: boolean = true;
+  private readonly debugMode: boolean = false ;
   private readonly debugColor!: THREE.Color;
 
   /**
@@ -42,7 +42,7 @@ export class PointCloudChunk {
 
     this.renderMaterial = new THREE.PointsMaterial({vertexColors: true, size: 0.1, fog: true});
 
-    this.points = new THREE.Points(this.bufferGeometry,  this.renderMaterial);
+    this.points = new THREE.Points(this.bufferGeometry, this.renderMaterial);
     this.points.name = name;
 
     this.bufferGeometry.setDrawRange(0, this.bufferIndex);
@@ -166,5 +166,12 @@ export class PointCloudChunk {
    */
   public getPoints(): THREE.Points {
     return this.points;
+  }
+
+  /**
+   *
+   */
+  public getMaterial(): THREE.PointsMaterial {
+    return this.points.material as THREE.PointsMaterial;
   }
 }

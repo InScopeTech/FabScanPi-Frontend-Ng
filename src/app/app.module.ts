@@ -31,6 +31,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './component/app.component';
@@ -81,7 +82,8 @@ import { SettingsComponent } from './component/settings/settings.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

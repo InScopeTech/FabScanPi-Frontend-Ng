@@ -11,7 +11,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
  */
 export class RenderService {
 
-  private static HEIGHT_SCALE_FACTOR: number = 0.87;
+  public static readonly WIDTH_SCALE_NAV_OPENED = 350;
+  public static readonly WIDTH_SCALE_NAV_COLLAPSED = 64;
+
+  private static heightScale: number = 0.87;
+  private static widthScale: number = RenderService.WIDTH_SCALE_NAV_OPENED;
 
   private static scene: THREE.Scene;
   private static renderer: THREE.WebGLRenderer;
@@ -34,7 +38,7 @@ export class RenderService {
 
     RenderService.renderer = new THREE.WebGLRenderer({canvas: RenderService.canvas, alpha: true, antialias: true});
 
-    RenderService.renderer.setSize(window.innerWidth, window.innerHeight * RenderService.HEIGHT_SCALE_FACTOR);
+    RenderService.renderer.setSize(window.innerWidth - RenderService.widthScale, window.innerHeight * RenderService.heightScale);
     RenderService.renderer.setClearColor(new THREE.Color(0x0), 0);
     RenderService.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -50,11 +54,12 @@ export class RenderService {
 
     // camera
     if (!RenderService.camera){
-      const width = window.innerWidth;
-      const height = window.innerHeight * RenderService.HEIGHT_SCALE_FACTOR;
+      const width = window.innerWidth - RenderService.widthScale;
+      const height = window.innerHeight * RenderService.heightScale;
       const aspectRatio = width / height;
       RenderService.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 10000);
       RenderService.camera.position.set(100,100,100);
+      RenderService.camera.lookAt(new THREE.Vector3(0, 45, 0));
       RenderService.scene.add(RenderService.camera);
     }
 
@@ -70,6 +75,7 @@ export class RenderService {
     RenderService.controls.zoomSpeed = 1.0;
     RenderService.controls.panSpeed = 0.1;
     RenderService.controls.enablePan = true;
+    RenderService.controls.target = new THREE.Vector3(0, 45, 0);
 
     // light
     if (!RenderService.light){
@@ -135,11 +141,18 @@ export class RenderService {
 
   /**
    *
-   * @private
+   * @param widthScale
    */
-  private static resize(): void {
-    const width = window.innerWidth;
-    const height = window.innerHeight * RenderService.HEIGHT_SCALE_FACTOR;
+  public static setWidthScale(widthScale: number): void{
+    RenderService.widthScale = widthScale;
+  }
+
+  /**
+   *
+   */
+  public static resize(): void {
+    const width = window.innerWidth - RenderService.widthScale;
+    const height = window.innerHeight * RenderService.heightScale;
 
     RenderService.camera.aspect = width / height;
     RenderService.camera.updateProjectionMatrix();

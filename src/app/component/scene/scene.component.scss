@@ -1,0 +1,34 @@
+mat-sidenav.opened {
+  width: 350px;
+  min-width: 64px !important;
+  transition: all 1s;
+}
+
+mat-sidenav.collapsed {
+  width: 64px;
+  min-width: 64px !important;
+  transition: all 1s;
+}
+
+mat-sidenav-content {
+  height: 87vh;
+}
+
+mat-sidenav-content.opened {
+  margin-left: 350px !important;
+  transition: all 1s;
+}
+
+mat-sidenav-content.collapsed {
+  margin-left: 64px !important;
+  transition: all 1s;
+}
+
+.bottom-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-list-option img{
+  width: 24px;
+}
